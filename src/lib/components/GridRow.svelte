@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="group relative mb-4 flex justify-between rounded-sm p-4 leading-tight odd:bg-green-100 even:bg-blue-100 lg:gap-4"
+	class="group relative mb-4 flex justify-between rounded-sm p-4 leading-tight odd:bg-green-100 even:bg-blue-100 lg:gap-4 max-w-4xl"
 >
 	<div class="flex w-full gap-4">
 		<div class="shrink-0 grow-0">

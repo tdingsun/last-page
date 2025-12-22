@@ -2,7 +2,7 @@
 	import NavLink from './NavLink.svelte';
 </script>
 
-<div class="flex h-25 w-46 flex-col gap-4 rounded-r-sm border border-l-0 border-brown p-4 text-sm">
+<div class="flex h-25 w-46 shrink-0 grow-0 flex-col gap-4 rounded-r-sm border border-l-0 border-brown p-4 text-sm">
 	<div>
 		<NavLink href="/about">About</NavLink>
 	</div>

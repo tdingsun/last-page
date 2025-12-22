@@ -6,7 +6,7 @@
 </script>
 
 <div class="sticky top-0 flex w-dvw justify-between bg-beige text-sm">
-	<div class="basis-[184px] p-4">
+	<div class="basis-[184px] p-4 sm:block hidden">
 		<BlockContent value={welcomeMessage}></BlockContent>
 	</div>
 	<div class="flex justify-between grow">

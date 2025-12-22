@@ -53,11 +53,6 @@ export default defineType({
       type: 'image',
     }),
     defineField({
-      name: 'listenLink',
-      title: 'Listen Link',
-      type: 'string',
-    }),
-    defineField({
       name: 'format',
       title: 'Format',
       type: 'tags',

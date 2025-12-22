@@ -10,10 +10,10 @@
 		<BlockContent value={welcomeMessage}></BlockContent>
 	</div>
 	<div class="flex justify-between grow">
-		<a href="/" class="pointer-cursor">
+		<a href="/" class="cursor-pointer">
 			<img
 				src={logotype}
-				class="w-full max-w-72 self-center justify-self-center p-4 mix-blend-multiply"
+				class="w-full max-w-72 self-center justify-self-center p-4 mix-blend-multiply cursor-pointer"
 			/>
 		</a>
 		<div class="flex grow basis-0 justify-end">

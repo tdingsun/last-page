@@ -28,7 +28,7 @@
 				: 'clipped-corner'} absolute top-0 right-0 bottom-0 left-0 flex flex-col border-l border-brown transition-[clip-path]"
 		>
 			<div
-				class="absolute top-0 left-0 h-12 w-[calc(100%-95px)] rounded-tr-md border-t border-r"
+				class="absolute top-0 left-0 h-12 { page.url.pathname === '/' ? 'w-[calc(100%-95px)] border-r rounded-tr-md' : 'w-full'} border-t "
 			></div>
 			<a
 				href="/"

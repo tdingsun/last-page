@@ -66,21 +66,19 @@ export async function getAllReviews(): Promise<any> {
 }
 
 export async function getReviewBySlug(slug: string): Promise<any> {
-	return await client.fetch(groq`{
-        "review": *[_type=="review" && slug.current == "${slug}"][0],
-        "nextReview": *[_type=="review" && slug.current == "${slug}" && ^.pubDate < pubDate]|order(pubDate asc)[0]{
-            albumArt,
-            artist,
-            author,
-            slug,
-            title
-        },
-        "previousReview": *[_type=="review" && slug.current == "${slug}" && ^.pubDate > pubDate]|order(pubDate desc)[0]{
-            albumArt,
-            artist,
-            author,
-            slug,
-            title}
+	return await client.fetch(groq`
+        *[_type=="review" && slug.current=="${slug}"][0]{
+            ...,
+            "nextReview":  *[_type=="review" && ^.pubDate <= pubDate && ^.title < title]| order(pubDate desc, title asc)[0]{
+                title,
+                slug,
+                artist
+            },
+            "prevReview":  *[_type=="review" && ^.pubDate >= pubDate && ^.title > title]| order(pubDate desc, title asc)[0]{
+                title,
+                slug,
+                artist
+            },
         }
     `);
 }

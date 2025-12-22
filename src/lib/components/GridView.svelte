@@ -4,7 +4,7 @@
 </script>
 
 
-<div class=" mr-25 mt-16">
+<div class=" mr-24 mt-4">
 	{#each reviews as review, idx}
 		<GridRow {review} idx={reviews.length - idx}></GridRow>
 	{/each}

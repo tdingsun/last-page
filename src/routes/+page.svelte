@@ -4,7 +4,6 @@
 	import ViewToggle from '$lib/components/ViewToggle.svelte';
 	import { siteState } from '$lib/state.svelte';
 	let { data } = $props();
-	console.log(data);
 </script>
 
 <ViewToggle></ViewToggle>

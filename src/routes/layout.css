@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@font-face {
+	font-family: 'NationalPark';
+	src: url('/fonts/NationalPark/NationalPark-ExtraLight.ttf');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NationalPark';
+	src: url('/fonts/NationalPark/NationalPark-Light.ttf');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NationalPark';
+	src: url('/fonts/NationalPark/NationalPark-Regular.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NationalPark';
+	src: url('/fonts/NationalPark/NationalPark-Medium.ttf');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NationalPark';
+	src: url('/fonts/NationalPark/NationalPark-SemiBold.ttf');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NationalPark';
+	src: url('/fonts/NationalPark/NationalPark-Bold.ttf');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'NationalPark';
+	src: url('/fonts/NationalPark/NationalPark-ExtraBold.ttf');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@theme {
+	--color-black: #1a1a1a;
+	--color-white: #f8f8f8;
+	--color-brown: #3d2412;
+	--color-beige: #e0e6cf;
+	--font-sans: 'NationalPark', sans-serif;
+}
+
+:root {
+	--color-black: #1a1a1a;
+	--color-white: #f8f8f8;
+	--color-brown: #3d2412;
+	--color-beige: #e0e6cf;
+}
+
+html, body {
+    color: var(--color-brown);
+    background-color: var(--color-beige);
+}

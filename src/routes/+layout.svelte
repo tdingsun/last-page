@@ -7,41 +7,53 @@
 	import { siteState } from '$lib/state.svelte.js';
 	let { children, data } = $props();
 	let inCorner = $state(false);
+	let showNav = $state(false);
 	const onMouseOverCorner = () => {
 		inCorner = true;
 	};
 	const onMouseLeaveCorner = () => {
 		inCorner = false;
 	};
+	const toggleNav = () => {
+		showNav = !showNav
+	}
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
 <SiteHeader welcomeMessage={data.homePage.welcomeMessage}></SiteHeader>
-<div class="sticky top-0 flex h-full max-h-[calc(100dvh-240px)] w-full gap-4">
-	<Nav></Nav>
+<div class="sticky top-0 flex h-full max-h-[calc(100dvh-240px)] w-full">
+	<button onclick={toggleNav} 
+		class="md:hidden fixed top-4 flex size-12 items-center justify-center rounded-r-sm border border-l-0 border-brown bg-beige"
+		>Menu</button
+	>
+	<div class="{showNav ? 'translate-x-0' : '-translate-x-46 md:translate-x-0'} sm:block absolute md:relative ">
+		<Nav></Nav>
+	</div>
 
-	<div class="relative mx-auto h-dvh max-h-[calc(100dvh-100px)] w-full">
+	<div class="{showNav ? ' translate-x-46 md:translate-x-0' : 'translate-x-0'} ml-4 transition-transform relative  mx-auto h-dvh max-h-[calc(100dvh-100px)] w-full">
 		<div
 			class="{inCorner
 				? 'clipped-corner-big'
 				: 'clipped-corner'} absolute top-0 right-0 bottom-0 left-0 flex flex-col border-l border-brown transition-[clip-path]"
 		>
 			<div
-				class="absolute top-0 left-0 h-12 { page.url.pathname === '/' ? 'w-[calc(100%-95px)] border-r rounded-tr-md' : 'w-full'} border-t "
+				class="absolute top-0 left-0 h-12 {page.url.pathname === '/'
+					? 'sm:w-[calc(100%-95px)] sm:rounded-tr-md sm:border-r'
+					: ''} w-full border-t"
 			></div>
 			<a
 				href="/"
-				on:mouseover={() => {
+				onmouseover={() => {
 					onMouseOverCorner();
 				}}
-				on:mouseleave={() => {
+				onmouseleave={() => {
 					onMouseLeaveCorner();
 				}}
-				on:focus={() => {
+				onfocus={() => {
 					onMouseOverCorner();
 				}}
-				on:blur={() => {
+				onblur={() => {
 					onMouseLeaveCorner();
 				}}
 				class="group absolute top-[-1px] left-[-1px] z-10 h-12 w-12 hover:h-14 hover:w-14"
@@ -56,7 +68,7 @@
 			>
 
 			{#if page.url.pathname === '/' && siteState.isListView}
-				<div class="flex py-4 ml-16 mr-29  gap-4 border-b text-xs">
+				<div class="mr-29 ml-16 flex gap-4 border-b py-4 text-xs">
 					<div class="">Title</div>
 					<div class="">Artist</div>
 					<div class="">Format</div>
@@ -68,7 +80,7 @@
 					<div>Published Date</div>
 				</div>
 			{/if}
-			<div class="{siteState.isListView ? '' : 'mt-px'}  overflow-scroll px-4 pb-16 lg:pl-16">
+			<div class="{siteState.isListView ? '' : 'mt-px'}  overflow-scroll sm:px-4 pb-16 lg:pl-16">
 				{@render children()}
 			</div>
 		</div>

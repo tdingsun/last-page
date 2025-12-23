@@ -4,6 +4,6 @@
     let { data } = $props();
 </script>
 
-<div>
+<div class="px-4 sm:px-0">
     <Review review={data.review}></Review>
 </div>

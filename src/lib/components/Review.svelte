@@ -9,7 +9,7 @@
 
 <div class="mt-4 flex w-full gap-4">
 	<div class="flex grow flex-col justify-between gap-4">
-		<div class="flex justify-between">
+		<div class="flex justify-between sm:flex-row flex-col">
 			<div class="flex flex-col gap-2">
 				<div class="-mt-1 mb-4 text-4xl leading-tight">
 					<div class="flex flex-wrap gap-x-4">
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div
-				class="sticky top-0 -mt-1 flex h-min shrink grow basis-0 flex-col flex-wrap items-end justify-end text-2xl"
+				class="sticky top-0 mt-2 sm:-mt-1 flex h-min shrink grow basis-0 flex-col flex-wrap items-end justify-end text-2xl"
 			>
 				{#each review.tags as tag}
 					<div
@@ -49,10 +49,10 @@
 		</div>
 		<div class="shrink-0 grow-0">
 			<div class="">
-				<img src={getImgUrl(review.albumArt)} class="max-w-lg overflow-hidden rounded-sm border" />
+				<img src={getImgUrl(review.albumArt)} class="sm:max-w-lg overflow-hidden rounded-sm border" />
 			</div>
 		</div>
-		<div class="max-w-2xl">
+		<div class="sm:max-w-2xl">
 			<BlockContent value={review.content}></BlockContent>
 		</div>
 	</div>

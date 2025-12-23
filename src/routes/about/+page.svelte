@@ -4,7 +4,7 @@
 	let { data } = $props();
 </script>
 
-<div class="mt-16 lg:mt-4 flex flex-col md:flex-row gap-8">
+<div class="mt-16 px-4 sm:px-0 lg:mt-4 flex flex-col md:flex-row gap-8">
 	<div class="basis-3/4">
 		<div class="max-w-2xl">
 		<BlockContent value={data.aboutPage.content}></BlockContent>

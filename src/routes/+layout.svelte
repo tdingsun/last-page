@@ -67,20 +67,8 @@
 				</div></a
 			>
 
-			{#if page.url.pathname === '/' && siteState.isListView}
-				<div class="mr-29 ml-16 flex gap-4 border-b py-4 text-xs">
-					<div class="">Title</div>
-					<div class="">Artist</div>
-					<div class="">Format</div>
-					<div class="">Release Date</div>
-					<div>Rating</div>
-
-					<div>Tags</div>
-					<div>Author</div>
-					<div>Published Date</div>
-				</div>
-			{/if}
-			<div class="{siteState.isListView ? '' : 'mt-px'}  overflow-scroll sm:px-4 pb-16 lg:pl-16">
+			
+			<div class="mt-px  overflow-scroll sm:px-4 pb-16 md:pl-16">
 				{@render children()}
 			</div>
 		</div>

@@ -8,7 +8,12 @@
 
 <ViewToggle></ViewToggle>
 {#if siteState.isListView}
-	<ListView reviews={data.reviews}></ListView>
+	<div class="sm:hidden block">
+			<GridView reviews={data.reviews}></GridView>
+	</div>
+	<div class="sm:block hidden">
+			<ListView reviews={data.reviews}></ListView>
+	</div>
 {:else}
 	<GridView reviews={data.reviews}></GridView>
 {/if}

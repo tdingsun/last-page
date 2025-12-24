@@ -24,15 +24,16 @@
 		</div>
 		<div class="flex grow flex-col justify-between gap-4">
 			<div class="flex flex-col justify-between sm:flex-row">
-				<div class="flex flex-col gap-2">
+				<div class="flex flex-col">
 					<div class="-mt-1 mb-4 text-2xl leading-tight">
 						<div class="">{review.title}</div>
 						<div class="font-extralight">{review.artist}</div>
 					</div>
-					<div class="shrink-0 whitespace-nowrap">
+					<div class="shrink-0 whitespace-nowrap mb-4">
 						<Rating rating={review.rating}></Rating>
 					</div>
 					<div class="text-sm">{review.format[0].label}, {formatDate(review.releaseDate)}</div>
+					<div class="text-sm">By {review.author}</div>
 				</div>
 				<div
 					class="mt-4 flex h-min shrink grow basis-0 flex-col flex-wrap sm:-mt-1 sm:items-end sm:justify-end"

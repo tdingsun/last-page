@@ -84,7 +84,9 @@ export async function getReviewsByTag(tag: string): Promise<any> {
     `);
 }
 
-
+export async function getAllTags(): Promise<any> {
+    return await client.fetch(groq`*[_type == "review"].tags[]`)
+}
 
 export async function getReviewBySlug(slug: string): Promise<any> {
 	return await client.fetch(groq`

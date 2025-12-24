@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { rating, large } = $props();
+	let { rating, large=false } = $props();
 	let whole = Math.floor(rating);
 	let numCircles = new Array(5);
 	let fraction = Math.round((rating - whole) * 100);

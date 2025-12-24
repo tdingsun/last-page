@@ -10,9 +10,9 @@
 	class="group relative flex max-w-4xl justify-between rounded-sm p-4 leading-tight odd:bg-green-100 even:bg-blue-100 sm:mb-4 lg:gap-4"
 >
 	<div class="flex w-full flex-col gap-4 sm:flex-row">
-		<div class="shrink-0 grow-0">
+		<div class="shrink-0 grow-0 ">
 			<a href="/review/{review.slug.current}">
-				<div class=" rounded-xs border sm:w-36">
+				<div class=" rounded-xs border">
 					<img
 						src={getThumbnailImg(review.albumArt)}
 						class="mix-blend-multiply grayscale group-hover:mix-blend-normal group-hover:grayscale-0 sm:size-36 lg:size-48"

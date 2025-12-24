@@ -67,7 +67,7 @@ export async function getAllReviews(): Promise<any> {
 
 export async function getReviewsByTag(tag: string): Promise<any> {
 	return await client.fetch(groq`
-        *[_type=="review" && "${tag}" in tags] | order(pubDate desc, title asc){
+        *[_type=="review" && "${tag}" in tags[]._key] | order(pubDate desc, title asc){
             albumArt,
             artist,
             author,

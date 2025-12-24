@@ -3,20 +3,22 @@
 	import { formatDate } from '$lib/utils';
 	import BlockContent from './blockContent/BlockContent.svelte';
 	import Rating from './Rating.svelte';
-	let { review, idx } = $props();
+	let { review } = $props();
 </script>
 
 <div
 	class="group relative flex max-w-4xl justify-between rounded-sm p-4 leading-tight odd:bg-green-100 even:bg-blue-100 sm:mb-4 lg:gap-4"
 >
 	<div class="flex w-full flex-col gap-4 sm:flex-row">
-		<div class="shrink-0 grow-0 ">
+		<div class="shrink-0 grow-0">
 			<a href="/review/{review.slug.current}">
-				<div class=" rounded-xs border">
-					<img
-						src={getThumbnailImg(review.albumArt)}
-						class="mix-blend-multiply grayscale group-hover:mix-blend-normal group-hover:grayscale-0 sm:size-36 lg:size-48"
-					/>
+				<div class=" rounded-xs border sm:size-36 lg:size-48">
+					{#if review.albumArt}
+						<img
+							src={getThumbnailImg(review.albumArt)}
+							class="mix-blend-multiply grayscale group-hover:mix-blend-normal group-hover:grayscale-0 "
+						/>
+					{/if}
 				</div>
 			</a>
 		</div>
@@ -33,14 +35,15 @@
 					<div class="text-sm">{review.format[0].label}, {formatDate(review.releaseDate)}</div>
 				</div>
 				<div
-					class="mt-4 flex h-min shrink grow basis-0 flex-col flex-wrap sm:items-end sm:justify-end sm:-mt-1"
+					class="mt-4 flex h-min shrink grow basis-0 flex-col flex-wrap sm:-mt-1 sm:items-end sm:justify-end"
 				>
 					{#each review.tags as tag}
-						<div
-							class="flex h-min items-center justify-center rounded-xs px-1 py-0.5 text-right leading-[1.1] tracking-[0.01em] whitespace-nowrap sm:text-2xl"
+						<a
+							href="/tags/{tag.value}"
+							class="flex h-min items-center justify-center rounded-xs px-1 py-0.5 text-right leading-[1.1] tracking-[0.01em] whitespace-nowrap sm:text-2xl hover:underline"
 						>
 							{tag.label}
-						</div>
+						</a>
 					{/each}
 				</div>
 			</div>

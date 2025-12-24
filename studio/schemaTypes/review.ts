@@ -58,6 +58,10 @@ export default defineType({
       type: 'tags',
       options: {
         includeFromRelated: 'format',
+        onCreate: (value) => ({
+          label: value,
+          value: value.toLowerCase().replace(/\W/g, '-'),
+        }),
       },
     }),
     defineField({
@@ -66,6 +70,10 @@ export default defineType({
       type: 'tags',
       options: {
         includeFromRelated: 'tags',
+        onCreate: (value) => ({
+          label: value,
+          value: value.toLowerCase().replace(/\W/g, '-'),
+        }),
       },
     }),
     defineField({

@@ -28,11 +28,11 @@
 
 			<div class="flex grow basis-0 flex-wrap lg:max-w-[calc(100%-300px)] justify-end gap-1 lg:justify-start">
 				{#each review.tags as tag}
-					<div
-						class="flex h-min items-center justify-center rounded-xs border px-1 py-0.5 text-xs leading-[1] tracking-[0.01em]"
+					<a href="/tags/{tag.value}"
+						class="hover:text-beige hover:bg-brown border-brown transition-colors flex h-min items-center justify-center rounded-xs border px-1 py-0.5 text-xs leading-[1] tracking-[0.01em]"
 					>
 						{tag.label}
-					</div>
+					</a>
 				{/each}
 			</div>
 		</div>

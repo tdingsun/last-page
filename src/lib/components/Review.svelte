@@ -9,7 +9,7 @@
 
 <div class="mt-4 flex w-full gap-4">
 	<div class="flex grow flex-col justify-between gap-4">
-		<div class="flex justify-between sm:flex-row flex-col">
+		<div class="flex flex-col justify-between sm:flex-row">
 			<div class="flex flex-col gap-2">
 				<div class="-mt-1 mb-4 text-4xl leading-tight">
 					<div class="flex flex-wrap gap-x-4">
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div
-				class="sticky top-0 mt-2 sm:-mt-1 flex h-min shrink grow basis-0 flex-col flex-wrap items-end justify-end text-2xl"
+				class="sticky top-0 mt-2 flex h-min shrink grow basis-0 flex-col flex-wrap items-end justify-end text-2xl sm:-mt-1"
 			>
 				{#each review.tags as tag}
 					<div
@@ -47,23 +47,30 @@
 				{/each}
 			</div>
 		</div>
-		<div class="shrink-0 grow-0">
-			<div class="">
-				<img src={getImgUrl(review.albumArt)} class="sm:max-w-lg overflow-hidden rounded-sm border" />
+
+		{#if review.albumArt}
+			<div class="shrink-0 grow-0">
+				<div>
+					<img
+						src={getImgUrl(review.albumArt)}
+						class="overflow-hidden rounded-sm border sm:max-w-lg"
+					/>
+				</div>
 			</div>
-		</div>
+		{/if}
+
 		<div class="sm:max-w-2xl">
 			<BlockContent value={review.content}></BlockContent>
 		</div>
 	</div>
 </div>
 
-<div class="mt-12 lg:mr-12 flex justify-between border-t pt-1">
+<div class="mt-12 flex justify-between border-t pt-1 lg:mr-12">
 	<div>
 		{#if review.prevReview}
 			<a
 				href="/review/{review.prevReview.slug.current}"
-				class="tight flex flex-col rounded-sm border px-2 py-1 mt-1"
+				class="tight mt-1 flex flex-col rounded-sm border px-2 py-1"
 			>
 				<div>
 					{review.prevReview.title}
@@ -79,7 +86,7 @@
 		{#if review.nextReview}
 			<a
 				href="/review/{review.nextReview.slug.current}"
-				class="flex flex-col rounded-sm border px-2 py-1 leading-tight mt-1"
+				class="mt-1 flex flex-col rounded-sm border px-2 py-1 leading-tight"
 			>
 				<div>
 					{review.nextReview.title}

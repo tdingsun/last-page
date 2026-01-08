@@ -10,7 +10,7 @@
 			frameborder="0"
 			allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
 			referrerpolicy="strict-origin-when-cross-origin"
-			class="h-full w-full"
+			class="h-full w-full border rounded-md"
 		></iframe>
 	</div>
 	<div class="my-1 text-sm">

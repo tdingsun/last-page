@@ -92,12 +92,12 @@ export async function getReviewBySlug(slug: string): Promise<any> {
 	return await client.fetch(groq`
         *[_type=="review" && slug.current=="${slug}"][0]{
             ...,
-            "nextReview":  *[_type=="review" && ^.pubDate <= pubDate && ^.title < title]| order(pubDate desc, title asc)[0]{
+            "nextReview":  *[_type=="review" &&  ^.pubDate > pubDate || (^.pubDate == pubDate && ^.title < title)]| order(pubDate desc, title asc)[0]{
                 title,
                 slug,
                 artist
             },
-            "prevReview":  *[_type=="review" && ^.pubDate >= pubDate && ^.title > title]| order(pubDate asc, title desc)[0]{
+            "prevReview":  *[_type=="review" && ^.pubDate < pubDate || (^.pubDate == pubDate && ^.title > title)]| order(pubDate asc, title desc)[0]{
                 title,
                 slug,
                 artist

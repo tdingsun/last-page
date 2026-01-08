@@ -12,7 +12,7 @@
 	});
 </script>
 
-<div class="hidden sm:flex flex-col items-center p-4 leading-tight">
+<div class="flex flex-col leading-tight">
     {#each time as component}
         <div>{component}</div>
     {/each}

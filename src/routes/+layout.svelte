@@ -4,6 +4,8 @@
 	import SiteHeader from '$lib/components/SiteHeader.svelte';
 	import Nav from '$lib/components/Nav.svelte';
 	import { page } from '$app/state';
+	import { beforeNavigate, goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 	import { siteState } from '$lib/state.svelte.js';
 	let { children, data } = $props();
 	let inCorner = $state(false);
@@ -15,35 +17,61 @@
 		inCorner = false;
 	};
 	const toggleNav = () => {
-		showNav = !showNav
-	}
+		showNav = !showNav;
+	};
+
+	const toggleView = () => {
+		siteState.isListView = !siteState.isListView;
+	};
+
+	const cornerButton = () => {
+		inCorner = true;
+
+		if (page.url.pathname === '/' || page.url.pathname.startsWith('/tags/')) {
+			if (window.innerWidth < 640) {
+				toggleNav();
+			} else {
+				toggleView();
+			}
+		} else {
+			goto('/', {
+				keepFocus: true
+			});
+		}
+	};
+
+	beforeNavigate(() => {
+		if (window.innerWidth < 640) {
+			showNav = false;
+		} else {
+			showNav = true;
+		}
+	});
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
 <SiteHeader welcomeMessage={data.homePage.welcomeMessage}></SiteHeader>
-<div class="sticky top-0 flex h-full max-h-[calc(100dvh-240px)] w-full">
-	<button onclick={toggleNav} 
-		class="md:hidden fixed top-4 flex size-12 items-center justify-center rounded-r-sm border border-l-0 border-brown bg-beige"
-		>Menu</button
+<div class="sticky top-0 flex h-full w-full overflow-x-hidden">
+	<div
+		class="  {showNav
+			? 'translate-x-0 '
+			: '-translate-x-50 sm:translate-x-0'} absolute h-dvh py-1 sm:relative sm:transition-[width]"
 	>
-	<div class="{showNav ? 'translate-x-0' : '-translate-x-46 md:translate-x-0'} sm:block absolute md:relative ">
 		<Nav></Nav>
 	</div>
 
-	<div class="{showNav ? ' translate-x-46 md:translate-x-0' : 'translate-x-0'} ml-4 transition-transform relative  mx-auto h-dvh max-h-[calc(100dvh-100px)] w-full">
+	<div
+		class="{showNav
+			? ' translate-x-50 sm:translate-x-0 '
+			: 'translate-x-0 '} relative mx-auto ml-1 h-dvh w-full max-sm:transition-transform"
+	>
 		<div
 			class="{inCorner
 				? 'clipped-corner-big'
-				: 'clipped-corner'} absolute top-0 right-0 bottom-0 left-0 flex flex-col border-l border-brown transition-[clip-path]"
+				: 'clipped-corner'} absolute top-0 right-0 bottom-0 left-0 mt-1 flex flex-col border-t border-l border-brown transition-[clip-path]"
 		>
-			<div
-				class="absolute top-0 left-0 h-12 {page.url.pathname === '/'
-					? 'sm:w-[calc(100%-95px)] sm:rounded-tr-md sm:border-r'
-					: ''} w-full border-t"
-			></div>
-			<a
-				href="/"
+			<button
 				onmouseover={() => {
 					onMouseOverCorner();
 				}}
@@ -56,19 +84,19 @@
 				onblur={() => {
 					onMouseLeaveCorner();
 				}}
-				class="group absolute top-[-1px] left-[-1px] z-10 h-12 w-12 hover:h-14 hover:w-14"
+				onclick={cornerButton}
+				class="group absolute top-[-1px] left-[-1px] z-10 h-12 w-12 cursor-pointer transition-[width,height] hover:sm:h-16 hover:sm:w-16"
 			>
 				<div
-					class="h-0 w-0 rounded-br-[4px] border-b-[48px] border-l-[48px] border-b-brown border-l-[transparent] shadow-[0px_2px_10px_0px_#9F938A] transition-[border] group-hover:border-b-[56px] group-hover:border-l-[56px]"
+					class="h-0 w-0 rounded-br-[4px] border-b-[48px] border-l-[48px] border-b-brown border-l-[transparent] transition-[border] group-hover:sm:border-b-[64px] group-hover:sm:border-l-[64px]"
 				>
 					<div
-						class="absolute top-[3px] left-[3px] h-0 w-0 rounded-br-[3px] border-b-[44px] border-l-[44px] border-b-beige border-l-[transparent] transition-[border] group-hover:border-b-[52px] group-hover:border-l-[52px]"
+						class="absolute top-[2px] left-[2px] h-0 w-0 rounded-br-[3px] border-b-[45px] border-l-[45px] border-b-beige border-l-[transparent] transition-[border] group-hover:sm:border-b-[61px] group-hover:sm:border-l-[61px]"
 					></div>
-				</div></a
+				</div></button
 			>
 
-			
-			<div class="mt-px  overflow-scroll sm:px-4 pb-16 md:pl-16">
+			<div class="overflow-scroll bg-beige px-1">
 				{@render children()}
 			</div>
 		</div>
@@ -76,12 +104,16 @@
 </div>
 
 <style>
-	.clipped-corner {
+	.clipped-corner,
+	.clipped-corner-big {
 		-webkit-clip-path: polygon(48px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 48px);
 		clip-path: polygon(48px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 48px);
 	}
-	.clipped-corner-big {
-		-webkit-clip-path: polygon(56px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 56px);
-		clip-path: polygon(56px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 56px);
+
+	@media (width >= 40rem) {
+		.clipped-corner-big {
+			-webkit-clip-path: polygon(64px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 64px);
+			clip-path: polygon(64px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 64px);
+		}
 	}
 </style>

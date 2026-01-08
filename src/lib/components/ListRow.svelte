@@ -2,14 +2,16 @@
 	import { formatDate } from '$lib/utils';
 	import Rating from './Rating.svelte';
 	let { review, idx } = $props();
+	let rating = $derived(review.rating);
+	$inspect(rating);
 </script>
 
 <a
 	href="/review/{review.slug.current}"
-	class="relative flex justify-between border-b py-4  leading-tight lg:gap-4"
+	class="relative flex justify-between border-b p-4 leading-tight lg:gap-4"
 >
 	<div class=" flex basis-full flex-col gap-4 lg:flex-row">
-		<div class="hidden md:flex absolute -left-8 rounded-full border px-1 text-xs">{idx}</div>
+		<div class="absolute -left-8 hidden rounded-full border px-1 text-xs md:flex">{idx}</div>
 		<div class="flex shrink-0 grow-0 flex-col gap-x-4 lg:basis-[300px] lg:flex-row">
 			<div class="">{review.title}</div>
 			<div class="font-extralight">{review.artist}</div>
@@ -22,14 +24,19 @@
 					{formatDate(review.releaseDate)}
 				</div>
 				<div class="shrink-0 basis-[64px] text-xs whitespace-nowrap">
-					<Rating rating={review.rating}></Rating>
+					{#key rating}
+						<Rating {rating}></Rating>
+					{/key}
 				</div>
 			</div>
 
-			<div class="flex grow basis-0 flex-wrap lg:max-w-[calc(100%-300px)] justify-end gap-1 lg:justify-start">
+			<div
+				class="flex grow basis-0 flex-wrap justify-end gap-1 lg:max-w-[calc(100%-300px)] lg:justify-start"
+			>
 				{#each review.tags as tag}
-					<a href="/tags/{tag.value}"
-						class="hover:text-beige hover:bg-brown border-brown transition-colors flex h-min items-center justify-center rounded-xs border px-1 py-0.5 text-xs leading-[1] tracking-[0.01em]"
+					<a
+						href="/tags/{tag.value}"
+						class="flex h-min items-center justify-center rounded-xs border border-brown px-1 py-0.5 text-xs leading-[1] tracking-[0.01em] transition-colors hover:bg-brown hover:text-beige"
 					>
 						{tag.label}
 					</a>

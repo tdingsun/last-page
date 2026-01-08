@@ -13,8 +13,7 @@
 			if (lightboxImg) {
 				let w = lightboxImg.getBoundingClientRect().width;
 				let h = lightboxImg.getBoundingClientRect().height;
-				lightboxImg.style.left = `${Math.max(Math.random() * (window.innerWidth - w), 0)}px`;
-				lightboxImg.style.top = `${Math.max(Math.random() * (window.innerHeight - h), 0)}px`;
+		
                 lightboxImg.style.pointerEvents = 'auto'
 				document.querySelectorAll('.lightboxImg').forEach((el) => {
 					el.style.zIndex = '99';
@@ -31,25 +30,31 @@
     })
 </script>
 
-<div class="my-4">
+<div class="my-4 border rounded-md flex flex-col justify-center p-1">
 	<img
 		onclick={toggleLightbox}
 		src={getImgUrl(portableText.value)}
 		alt={portableText.value.alt ? portableText.value.alt : ''}
+		class="rounded-sm border"
 	/>
 	{#if portableText.value.caption}
-		<div class="my-1 text-sm">
+		<div class="mt-1 text-sm">
 			<BlockContent value={portableText.value.caption}></BlockContent>
 		</div>
 	{/if}
 </div>
 
-<img
-	bind:this={lightboxImg}
+<div bind:this={lightboxImg}
 	onclick={toggleLightbox}
+	class="fixed left-0 top-0 z-10 w-dvw h-dvh bg-beige p-4 lightboxImg flex items-center justify-center {lightBoxState
+		? 'pointer-events-auto opacity-100'
+		: 'pointer-events-none opacity-0'}"
+	>
+<img
+	
 	alt={portableText.value.alt ? portableText.value.alt : ''}
 	src={getImgUrl(portableText.value)}
-	class="lightboxImg {lightBoxState
-		? 'pointer-events-auto opacity-100'
-		: 'pointer-events-none opacity-0'} fixed z-10 max-h-[calc(100dvh-4rem)] max-w-[calc(100dvw-4rem)] shadow-2xl"
+	class=" border rounded-md  object-contain "
 />
+
+</div>

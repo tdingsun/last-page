@@ -6,7 +6,7 @@ export const formatDate = (date: string) => {
 };
 
 export const getDateTime = () => {
-    const now = new Date();
-    const formatted = format(now, "EEEE, MMMM do,'The' Do 'day of' y,h:mm BBBB");
+	const now = new Date();
+	const formatted = format(now, "h:mm BBBB, 'The' Do 'day of' y");
 	return formatted.split(',');
 };

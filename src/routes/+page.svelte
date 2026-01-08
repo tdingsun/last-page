@@ -6,7 +6,7 @@
 	let { data } = $props();
 </script>
 
-<ViewToggle></ViewToggle>
+<!-- <ViewToggle></ViewToggle> -->
 {#if siteState.isListView}
 	<div class="sm:hidden block">
 			<GridView reviews={data.reviews}></GridView>

@@ -5,7 +5,7 @@
 	let fraction = Math.round((rating - whole) * 100);
 </script>
 
-<div class="flex gap-0.5 ">
+<div class="flex gap-0.5 mt-0.5 ">
 	{#each numCircles as circle, idx}
 		<div class="{large ? 'size-4' : 'size-2'} overflow-hidden rounded-full border">
 			{#if idx === whole}

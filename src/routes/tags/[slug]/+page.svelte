@@ -7,22 +7,25 @@
 	let { data } = $props();
 </script>
 
-<ViewToggle></ViewToggle>
 
-
-<div class="mt-3 text-2xl">
-    {#if data.tagLabel}
-       {data.tagLabel}
-    {:else}
-        {page.params.slug}
-    {/if}
-</div>
-{#if siteState.isListView}
-	<div class="sm:hidden block">
-			<GridView reviews={data.reviews}></GridView>
+<div class=" sticky top-0 z-1  ml-10 bg-beige">
+	<div class="border-b ml-2.25">
+		<div class="-mb-1.75 ml-2 pt-4.75 text-2xl font-extralight">
+			{#if data.tagLabel}
+				{data.tagLabel}
+			{:else}
+				{page.params.slug}
+			{/if}
+		</div>
 	</div>
-	<div class="sm:block hidden">
-			<ListView reviews={data.reviews}></ListView>
+</div>
+
+{#if siteState.isListView}
+	<div class="block sm:hidden">
+		<GridView reviews={data.reviews}></GridView>
+	</div>
+	<div class="hidden sm:block">
+		<ListView reviews={data.reviews}></ListView>
 	</div>
 {:else}
 	<GridView reviews={data.reviews}></GridView>

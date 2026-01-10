@@ -4,7 +4,7 @@
 </script>
 
 <div class="mb-4">
-	<div class="w-full {portableText.value.URL.includes('youtube') ? 'aspect-video' : ''} mb-1">
+	<div class="w-full {portableText.value.URL.includes('youtube') ? 'aspect-video  ' : ''} {portableText.value.URL.includes('bandcamp') ? 'h-30 ' : ''} mb-1 ">
 		<iframe
 			src={portableText.value.URL}
 			frameborder="0"

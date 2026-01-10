@@ -61,7 +61,7 @@
 
 <hr />
 
-<div class="mx-4 mt-4 max-w-full sm:mx-12 sm:mt-12 sm:max-w-xl">
+<div class="mx-4 mt-4 max-w-full sm:mx-12 sm:mt-12 my-12 sm:max-w-xl">
 	<BlockContent value={review.content}></BlockContent>
 </div>
 
